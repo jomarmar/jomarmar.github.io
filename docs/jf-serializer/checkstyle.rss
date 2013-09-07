@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<rss version="0.91">
+  <channel>
+    <title>jf-serializer - Checkstyle report</title>
+    <link>https://github.com/jomarmar/jf-serializer</link>
+    <description>jf-serializer - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2013</copyright>
+    <item>
+      <title>File: 13,
+             Errors: 0,
+             Warnings: 0,
+             Infos: 0
+      </title>
+            <link>https://github.com/jomarmar/jf-serializer/checkstyle.html</link>
+      <description>
+        <p>Click <a href="https://github.com/jomarmar/jf-serializer/checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="https://github.com/jomarmar/jf-serializer/checkstyle.html#org.fringe.jf.json.internal.serializer.JFSerializer.java">org/fringe/jf/json/internal/serializer/JFSerializer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/jomarmar/jf-serializer/checkstyle.html#org.fringe.jf.json.internal.util.JFSonUtil.java">org/fringe/jf/json/internal/util/JFSonUtil.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/jomarmar/jf-serializer/checkstyle.html#org.fringe.jf.json.internal.serializer.JFParamSerializer.java">org/fringe/jf/json/internal/serializer/JFParamSerializer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/jomarmar/jf-serializer/checkstyle.html#org.fringe.jf.json.internal.util.Base64.java">org/fringe/jf/json/internal/util/Base64.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/jomarmar/jf-serializer/checkstyle.html#org.fringe.jf.json.JsonSerializer.java">org/fringe/jf/json/JsonSerializer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/jomarmar/jf-serializer/checkstyle.html#org.fringe.jf.json.internal.objects.JFObject.java">org/fringe/jf/json/internal/objects/JFObject.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/jomarmar/jf-serializer/checkstyle.html#org.fringe.jf.json.internal.parser.JFParser.java">org/fringe/jf/json/internal/parser/JFParser.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/jomarmar/jf-serializer/checkstyle.html#org.fringe.jf.json.internal.parser.JFStreamParser.java">org/fringe/jf/json/internal/parser/JFStreamParser.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/jomarmar/jf-serializer/checkstyle.html#org.fringe.jf.json.internal.serializer.JFStreamSerializer.java">org/fringe/jf/json/internal/serializer/JFStreamSerializer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/jomarmar/jf-serializer/checkstyle.html#org.fringe.jf.json.internal.objects.JFParam.java">org/fringe/jf/json/internal/objects/JFParam.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/jomarmar/jf-serializer/checkstyle.html#org.fringe.jf.json.IJFSerializer.java">org/fringe/jf/json/IJFSerializer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/jomarmar/jf-serializer/checkstyle.html#org.fringe.jf.json.internal.util.JFDataTypes.java">org/fringe/jf/json/internal/util/JFDataTypes.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/jomarmar/jf-serializer/checkstyle.html#org.fringe.jf.json.internal.parser.JFParamParser.java">org/fringe/jf/json/internal/parser/JFParamParser.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+
