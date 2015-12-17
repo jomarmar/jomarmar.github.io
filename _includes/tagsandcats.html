@@ -1,0 +1,42 @@
+<section>
+
+
+     <div class="row">
+       <div class=" col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+         <hr/>
+           <p align="center">
+            <span class="jemz-tags"> · </span>
+            {% for category in site.categories %}
+            <a href="/categories/{{ category| first }}"><small class="jemz-tags">{{ category | first }}</small><span class="jemz-tags"> · </span>
+            {% endfor %}
+
+            {% for tag in site.tags %}
+            <a href="/tags/{{ tag | first }}"><small class="jemz-tags">{{ tag | first }}</small></a><span class="jemz-tags"> · </span>
+            {% endfor %}
+
+          </p>
+
+<!--         <p align="left">
+           <h2>Categories:</h2>
+           <h3>
+           {% for category in site.categories %}
+           {{ category | first }}{% unless forloop.last %}·{% endunless %}
+           {% endfor %}
+           </h3>
+         </p>
+       </div>
+
+       <div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-5 col-lg-offset-1 col-lg-5">
+
+         <p align="left">
+           <h2>Tags:</h2>
+           <h3>
+           {% for tag in site.tags %}
+           {{ tag | first }}{% unless forloop.last %}·{% endunless %}
+           {% endfor %}
+         </h3>
+         </p>
+       </div>
+     </div> -->
+
+</section>

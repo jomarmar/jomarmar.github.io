@@ -1,0 +1,30 @@
+# static engine of your blog
+siteEngine: "jekyll"
+# root directory of your blog
+siteLocalDir: "/home/jmartinez/temp/jemz-web"
+# directory to drafts from the root of siteLocalDir
+siteDraftsDir: "_drafts/"
+# directory to posts from the root of siteLocalDir
+sitePostsDir: "_posts/{year}/"
+# directory to images from the root of siteLocalDir
+siteImagesDir: "img/{year}/{month}/"
+# file extension of posts/drafts
+fileExtension: ".md"
+# URL to your blog
+siteUrl: "http://localhost:4000"
+# URLs to tags/posts/categories JSON file
+urlForTags: "http://localhost:4000/data/tags.json"
+urlForPosts: "http://localhost:4000/data/posts.json"
+urlForCategories: "http://localhost:4000/data/categories.json"
+# front matter template
+frontMatter: """
+---
+layout: <layout>
+menu: true
+note: false
+title: '<title>'
+date: <date>
+---
+"""
+# image tag template
+imageTag: "![<alt>](<src>)"

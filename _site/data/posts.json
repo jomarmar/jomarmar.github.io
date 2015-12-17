@@ -1,0 +1,23 @@
+{
+    "posts": [
+        
+        {
+            "title": "Archlinux: install Gnome (minimal)",
+            "url": "http://jemz.ovh/blog/os/2015/12/archlinux-install-gnome.html",
+            "date": "2015-12-16T13:56:00+01:00"
+        },
+        
+        {
+            "title": "Archlinux: initial setup and installation",
+            "url": "http://jemz.ovh/blog/os/2015/12/archlinux-installation.html",
+            "date": "2015-12-16T13:07:00+01:00"
+        },
+        
+        {
+            "title": "Linux: Configure network with command line",
+            "url": "http://jemz.ovh/blog/os/2015/05/configure-network-with-command-line.html",
+            "date": "2015-05-07T22:30:45+02:00"
+        }
+        
+    ]
+}

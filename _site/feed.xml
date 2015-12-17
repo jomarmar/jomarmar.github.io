@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JemZ Blog</title>
+    <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</description>
+    <link>http://jemz.ovh/</link>
+    <atom:link href="http://jemz.ovh/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 17 Dec 2015 11:50:25 +0100</pubDate>
+    <lastBuildDate>Thu, 17 Dec 2015 11:50:25 +0100</lastBuildDate>
+    <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>Archlinux: install Gnome (minimal)</title>
+        <description>&lt;h2 id=&quot;install-gnome-in-archlinux&quot;&gt;Install Gnome in Archlinux&lt;/h2&gt;
+
+&lt;p&gt;To install an empty Gnome desktop install the following packages&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# pacman -S xorg-xinit xorg-server gnome-session gdm
+# cp /etc/X11/xinit/xinitrc $HOME/.xinitrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Edit &lt;code&gt;$HOME/.xinitrc&lt;/code&gt; and replace the following lines:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;twm &amp;amp;
+xclock -geometry 50x50-1+1 &amp;amp;
+xterm -geometry 80x50+494+51 &amp;amp;
+xterm -geometry 80x20+494-0 &amp;amp;
+exec xterm -geometry 80x66+0+0 -name login
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;with&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec gnome-session
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;install-intel-graphics-hd-5000&quot;&gt;Install Intel Graphics HD 5000&lt;/h2&gt;
+
+&lt;p&gt;Configure Graphics Card: Intel Graphics HD 5000&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# pacman -S xf86-video-intel xf86-video-fbdev xf86-video-vesa libva-intel-driver libva libvdpau-va-gl
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Create a file: &lt;code&gt;/etc/modprobe.d/i915.conf&lt;/code&gt; with the following line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;options i915 modeset=1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Create a file: &lt;code&gt;/etc/X11/xorg.conf.d/20-intel.conf&lt;/code&gt; with the following content:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Section &quot;Device&quot;
+  Identifier &quot;Card0&quot;
+  Driver &quot;intel&quot;
+  VendorName &quot;Intel Corporation&quot;
+  BusID &quot;PCI:0:2:0&quot;
+EndSection
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Initramfs:&lt;/p&gt;
+
+&lt;p&gt;Edit the following lines in &lt;code&gt;/etc/mkinitcpio.conf&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;MODULES=&quot;intel_agp i915&quot;
+FILES=&quot;/etc/modprobe.d/i915.conf&quot;
+HOOKS=&quot;base udev autodetect modconf block lvm2 filesystems keyboard fsck&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then regenerate the Initramfs image:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# mkinitcpio -p linux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;other-useful-packages-for-gnome&quot;&gt;Other useful packages for Gnome&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;gnome-contro-panel&lt;/li&gt;
+  &lt;li&gt;gnome-terminal&lt;/li&gt;
+  &lt;li&gt;nautilus&lt;/li&gt;
+  &lt;li&gt;gedit&lt;/li&gt;
+  &lt;li&gt;gvfs-smb&lt;/li&gt;
+  &lt;li&gt;gvfs-nfs&lt;/li&gt;
+  &lt;li&gt;gvfs-afc&lt;/li&gt;
+  &lt;li&gt;gvfs-afp&lt;/li&gt;
+  &lt;li&gt;gvfs-gphoto2&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Wed, 16 Dec 2015 13:56:00 +0100</pubDate>
+        <link>http://jemz.ovh/blog/os/2015/12/archlinux-install-gnome.html</link>
+        <guid isPermaLink="true">http://jemz.ovh/blog/os/2015/12/archlinux-install-gnome.html</guid>
+        
+        <category>archlinux</category>
+        
+        <category>linux</category>
+        
+        
+        <category>os</category>
+        
+      </item>
+    
+      <item>
+        <title>Archlinux: initial setup and installation</title>
+        <description>&lt;h2 id=&quot;hardware-description&quot;&gt;Hardware Description&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Model:&lt;/strong&gt; &lt;a href=&quot;https://slimbook.es&quot;&gt;Slimbook&lt;/a&gt; 715-Intel i7&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;CPU:&lt;/strong&gt; Intel i7 - 4550U, 1.5GHz, Turbo Boost 3.0, 2 Core 4 Threads, 4M Cache &lt;a href=&quot;https://slimbook.es/tutoriales/slimbook/41-comparativa-procesador-i7&quot;&gt;+info&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Graphics Card:&lt;/strong&gt; Intel Graphics HD 5000&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RAM:&lt;/strong&gt; 8GB&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;SDD:&lt;/strong&gt; 120GB&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Display:&lt;/strong&gt; 13.3” FullHD 1920x1080px LED&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Wireless LAN:&lt;/strong&gt; Intel A/C Dual Band 802.11 b/g/n&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Bluetooth:&lt;/strong&gt; 4.0&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Camera:&lt;/strong&gt; 2mp&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Others:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;2 USB 3.0 ports&lt;/li&gt;
+  &lt;li&gt;Mini-HDMI&lt;/li&gt;
+  &lt;li&gt;SD/MMC&lt;/li&gt;
+  &lt;li&gt;External RJ45 (LAN) Adapter&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;archlinux-os&quot;&gt;Archlinux OS&lt;/h2&gt;
+
+&lt;h3 id=&quot;preparation&quot;&gt;Preparation&lt;/h3&gt;
+
+&lt;p&gt;Follow &lt;a href=&quot;https://wiki.archlinux.org/index.php/Category:Getting_and_installing_Arch&quot;&gt;this&lt;/a&gt; for instructions on downloading the installation medium and methods for booting it to the target machine.&lt;/p&gt;
+
+&lt;h3 id=&quot;network&quot;&gt;Network&lt;/h3&gt;
+
+&lt;p&gt;Usually network works out-of-the-box when booting from the installation medium. Nevertheless, if problems are found:&lt;/p&gt;
+
+&lt;h4 id=&quot;wireless&quot;&gt;Wireless&lt;/h4&gt;
+
+&lt;p&gt;Retrieve available network interfaces with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# ip a
+1: lo: &amp;lt;LOOPBACK,UP,LOWER_UP&amp;gt; mtu 65536 qdisc noqueue state UNKNOWN group default
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: enp2s0: &amp;lt;NO-CARRIER,BROADCAST,MULTICAST,UP&amp;gt; mtu 1500 qdisc fq_codel state DOWN group default qlen 1000
+    link/ether 00:16:96:e3:13:f2 brd ff:ff:ff:ff:ff:ff
+3: wlp3s0: &amp;lt;BROADCAST,MULTICAST,UP,LOWER_UP&amp;gt; mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether b4:6d:83:9a:9e:53 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.0.132/24 brd 192.168.0.255 scope global dynamic wlp3s0
+       valid_lft 84162sec preferred_lft 84162sec
+    inet6 fe80::b66d:83ff:fe9a:9e53/64 scope link
+       valid_lft forever preferred_lft forever
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In this case the wireless interface is &lt;strong&gt;wlp3s0&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Run the following command to setup configure the wireless connection:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# wifi-menu &amp;lt;interface&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;wired&quot;&gt;Wired&lt;/h4&gt;
+&lt;p&gt;It should be enough to start the DHCP client as:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# systemctl restart dhcpd.service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;storage-devices-partitions--lvm&quot;&gt;Storage devices (Partitions &amp;amp; LVM)&lt;/h3&gt;
+
+&lt;p&gt;List all devices (hdd) available and make sure you choose the right one:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# lsblk
+NAME                 MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+sda                    8:0    0 119.2G  0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create one partition for &lt;strong&gt;boot&lt;/strong&gt; systems and another for data/swap/root system.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# parted /dev/sdx
+(parted) mklabel gpt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Set up &lt;strong&gt;boot&lt;/strong&gt; partition&lt;br /&gt;
+&lt;code&gt;
+(parted) mkpart ESP fat32 1MiB 513MiB
+(parted) set 1 boot on
+&lt;/code&gt;&lt;br /&gt;
+Set up data partition&lt;br /&gt;
+&lt;code&gt;
+(parted) mkpart primary ext4 513MiB 100%
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The next step is to format the partitions:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;boot&lt;/strong&gt; partition:&lt;br /&gt;
+&lt;code&gt;
+# mkfs.fat -F32 /dev/sdxY
+&lt;/code&gt;&lt;br /&gt;
+&lt;strong&gt;data&lt;/strong&gt; partition:&lt;br /&gt;
+&lt;code&gt;
+# mkfs.ext4 /dev/sdxY
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now it is turn to setup the LVM.&lt;/p&gt;
+
+&lt;h4 id=&quot;lvm-set-up&quot;&gt;LVM Set up&lt;/h4&gt;
+
+&lt;p&gt;Three logical volumes will be created for:&lt;br /&gt;
+* root&lt;br /&gt;
+* user’s data&lt;br /&gt;
+* swap [optional]&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# pvcreate /dev/sdax
+# vgcreate VolGroup00 /dev/sdax
+# lvcreate -L 25G VolGroup00 -n lroot
+# lvcreate -L 8G VolGroup00 -n lswap
+# lvcreate -l +100%FREE VolGroup00 -n lhome
+#
+# modprobe dm_mod
+# vgscan
+# vgchange -ay
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Format the logical volumes&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# mkfs.ext4 /dev/mapper/VolGroup00-lroot
+# mkfs.ext4 /dev/mapper/VolGroup00-lhome
+# mkswap /dev/mapper/VolGroup00-lswap
+# swapon /dev/mapper/VolGroup00-lswap
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;mount-and-create-basic-installation&quot;&gt;Mount and create basic installation&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;# mount /dev/mapper/VolGroup00-lroot /mnt
+# mkdir /mnt/boot
+# mkdir /mnt/home
+# mount /dev/sdax /mnt/boot
+# mount /dev/mapper/VolGroup00-lhome /mnt/home
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install base system:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;# pacstrap /mnt base base-devel
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Generate fstab:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;# genfstab -U /mnt &amp;gt; /mnt/etc/fstab
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Configure the base system:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;# arch-chroot /mnt /bin/bash
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Set Locale: Uncomment &lt;code&gt;en_US.UTF-8&lt;/code&gt; and &lt;code&gt;es_ES.UTF-8&lt;/code&gt; from &lt;code&gt;/etc/locale.gen&lt;/code&gt; and run:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;# locale-gen
+# echo LANG=en_US.UTF-8 &amp;gt; /etc/locale.conf
+# echo KEYMAP=es &amp;gt; /etc/vconsole.conf
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Set Time:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;# ln -sf /usr/share/zoneinfo/Europe/Madrid /etc/localtime
+# hwclock --systohc --utc
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Configure Graphics Card: Intel Graphics HD 5000&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;# pacman -S xorg-xinit xorg-server xf86-video-intel xf86-video-fbdev xf86-video-vesa libva-intel-driver libva libvdpau-va-gl [gnome-session gdm gnome-control-panel gnome-terminal nautilus]
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;p&gt;Create a file: &lt;code&gt;/etc/modprobe.d/i915.conf&lt;/code&gt; with the following line:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;options i915 modeset=1
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;Create a file: &lt;code&gt;/etc/X11/xorg.conf.d/20-intel.conf&lt;/code&gt; with the following content:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;Section &quot;Device&quot;
+  Identifier &quot;Card0&quot;
+  Driver &quot;intel&quot;
+  VendorName &quot;Intel Corporation&quot;
+  BusID &quot;PCI:0:2:0&quot;
+EndSection
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Initramfs:&lt;/p&gt;
+
+    &lt;p&gt;Edit the following lines in &lt;code&gt;/etc/mkinitcpio.conf&lt;/code&gt;&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;MODULES=&quot;intel_agp i915&quot;
+FILES=&quot;/etc/modprobe.d/i915.conf&quot;
+HOOKS=&quot;base udev autodetect modconf block lvm2 filesystems keyboard fsck&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;Then regenerate the Initramfs image:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;# mkinitcpio -p linux
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Finally create a boot loader (EFI/GPT):&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;# bootctl install
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Create a boot entry in &lt;code&gt;/boot/loader/entries/arch.conf&lt;/code&gt;:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;title 	Arch Linux
+linux 	/vmlinuz-linux
+initrd	/initramfs-linux.img
+options 	root=/dev/mapper/VolGroup00-lroot rw
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Choose the default entry on loader&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;# vi /boot/loader/loader.conf
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;p&gt;Append these lines:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;timeout 3
+default arch
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Set the hostname:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;echo slimarch &amp;gt; /etc/hostname
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Finally reboot&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://wiki.archlinux.org/index.php/Installation_guide&quot;&gt;Archlinux Installation guide&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://wiki.archlinux.org/index.php/Beginners\&#39;_guide&quot;&gt;Archlinux Beginner’s guide&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://wiki.archlinux.org/index.php/Intel_graphics&quot;&gt;Archlinux Intel graphics&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Wed, 16 Dec 2015 13:07:00 +0100</pubDate>
+        <link>http://jemz.ovh/blog/os/2015/12/archlinux-installation.html</link>
+        <guid isPermaLink="true">http://jemz.ovh/blog/os/2015/12/archlinux-installation.html</guid>
+        
+        <category>linux</category>
+        
+        <category>archlinux</category>
+        
+        
+        <category>os</category>
+        
+      </item>
+    
+      <item>
+        <title>Linux: Configure network with command line</title>
+        <description>&lt;p&gt;My preferred way of installing linux is usually the &lt;em&gt;minimum installation&lt;/em&gt; or &lt;em&gt;minimal server&lt;/em&gt;. I like to keep my linux installations as clean and simple as possible.&lt;/p&gt;
+
+&lt;p&gt;You’ll find this post in your &lt;code&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+
+&lt;p&gt;To add new posts, simply add a file in the &lt;code&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+
+&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;def print_hi(name)
+  puts &quot;Hi, #{name}&quot;
+end
+print_hi(&#39;Tom&#39;)
+#=&amp;gt; prints &#39;Hi, Tom&#39; to STDOUT.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://github.com/jekyll/jekyll-help&quot;&gt;Jekyll’s dedicated Help repository&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 07 May 2015 22:30:45 +0200</pubDate>
+        <link>http://jemz.ovh/blog/os/2015/05/configure-network-with-command-line.html</link>
+        <guid isPermaLink="true">http://jemz.ovh/blog/os/2015/05/configure-network-with-command-line.html</guid>
+        
+        <category>archlinux</category>
+        
+        
+        <category>os</category>
+        
+      </item>
+    
+  </channel>
+</rss>

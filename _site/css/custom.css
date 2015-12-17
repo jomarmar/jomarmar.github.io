@@ -1,0 +1,73 @@
+h1 {
+    /* font-family: 'Raleway', Helvetica, Arial, sans-serif; */
+    font-family: 'Cabin', Helvetica, Arial, sans-serif;
+    font-size: 35px;
+    /* line-height: 50px; */
+    /* font-weight: bold; */
+}
+
+
+body {
+    font-family: 'Cabin', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 20px;
+}
+
+em {
+    font-size: 15px;
+}
+
+code {
+  font-size: 11px;
+  line-height: 17px;
+}
+
+pre code {
+  font-size: 11px;
+  line-height: 17px;
+}
+
+code span {
+  font-size: 11px;
+  line-height: 17px;
+}
+
+p {
+    font-family: 'Cabin', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 20px;
+}
+
+a {
+    /* color: #888888; */
+    font-weight: normal;
+    color: rgba(174, 0, 174, 0.87);
+
+}
+
+a:hover {
+    color: rgba(174, 0, 174, 1);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:visited {
+   color: rgba(174, 0, 174, 0.3);
+}
+
+hr {
+    border-color: rgba(174, 0, 174, 0.3);
+
+}
+
+.jemz-border, .jemz-border>tbody>tr>td {
+    /* border: 1px solid rgba(174, 0, 174, 1);*/
+    border-color: rgba(174, 0, 174, 0.2);
+}
+
+.jemz-tags {
+  font-family: 'Cabin', Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+
+}

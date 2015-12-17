@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>Archlinux: install Gnome (minimal)</title>
+  <meta name="description" content="Install Gnome in ArchlinuxTo install an empty Gnome desktop install the following packages# pacman -S xorg-xinit xorg-server gnome-session gdm# cp /etc/X11/x...">
+
+
+  <link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Cabin" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  <link rel="shortcut icon" href="/favicon.ico?v=2" type="image/x-icon" sizes="16x16 32x32 64x64">
+  <link rel="icon" href="/favicon.ico?v=2" type="image/x-icon" sizes="16x16 32x32 64x64">
+
+
+  <link rel="canonical" href="http://jemz.ovh/blog/os/2015/12/archlinux-install-gnome.html">
+  <link rel="alternate" type="application/atom+xml" title="JemZ Blog" href="http://jemz.ovh/feed.xml" />
+
+  <script src="/js/modernizr.js"></script>
+
+</head>
+
+
+  <body>
+
+    <header>
+
+    <div class="row">
+      <div class=" col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+      <!-- <div class=" col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">-->
+        <br/>
+        <div class="pull-right">
+          <table class="table table-condensed table-bordered jemz-border">
+            <tr>
+              
+                
+		              
+	 	                 <td style="font-family: 'Cabin'; text-align: center; font-size: 90%;"><b><a class="page-link" href="/about/">About</a></b></td>
+                  
+                
+              
+                
+              
+                
+              
+                
+		              
+	 	                 <td style="font-family: 'Cabin'; text-align: center; font-size: 90%;"><b><a class="page-link" href="/contact/">Contact</a></b></td>
+                  
+                
+              
+                
+              
+                
+		              
+                
+              
+                
+		              
+                
+              
+                
+		              
+                
+              
+                
+		              
+                
+              
+                
+		              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+		              
+	 	                 <td style="font-family: 'Cabin'; text-align: center; font-size: 90%;"><b><a class="page-link" href="/projects/">Projects</a></b></td>
+                  
+                
+              
+                
+              
+                
+		              
+	 	                 <td style="font-family: 'Cabin'; text-align: center; font-size: 90%;"><b><a class="page-link" href="/tutorials/">Tutorials</a></b></td>
+                  
+                
+              
+              <td style="font-family: 'Cabin'; text-align: center; font-size: 90%;"><b><a class="page-link" href="/blog/">Blog</a></b></td>
+            </tr>
+          </table>
+        </div>
+        <!-- <h1>JemZ. Blog</h1>-->
+        <a href="/"><img src="/img/jemz-logo.png" width="150"/></a>
+        <hr/>
+      </div>
+    </div>
+  
+</header>
+
+
+
+
+
+<!--    <div class="page-content"> -->
+
+        	<section>
+		<div class="row">
+			<div class=" col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+      	<!-- <div class=" col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">-->
+	    	<header class="post-header">
+	      	<h1>Archlinux: install Gnome (minimal)</h1>
+	      	<p class="post-meta">How to perform a minimal Gnome installation in Archlinux.<span class="post-meta pull-right">Dec 16, 2015</span></p>
+
+        </header>
+
+				
+
+	    	<p align="justified"><h2 id="install-gnome-in-archlinux">Install Gnome in Archlinux</h2>
+
+<p>To install an empty Gnome desktop install the following packages</p>
+
+<pre><code># pacman -S xorg-xinit xorg-server gnome-session gdm
+# cp /etc/X11/xinit/xinitrc $HOME/.xinitrc
+</code></pre>
+
+<p>Edit <code>$HOME/.xinitrc</code> and replace the following lines:</p>
+
+<pre><code>twm &amp;
+xclock -geometry 50x50-1+1 &amp;
+xterm -geometry 80x50+494+51 &amp;
+xterm -geometry 80x20+494-0 &amp;
+exec xterm -geometry 80x66+0+0 -name login
+</code></pre>
+
+<p>with</p>
+
+<pre><code>exec gnome-session
+</code></pre>
+
+<h2 id="install-intel-graphics-hd-5000">Install Intel Graphics HD 5000</h2>
+
+<p>Configure Graphics Card: Intel Graphics HD 5000</p>
+
+<pre><code># pacman -S xf86-video-intel xf86-video-fbdev xf86-video-vesa libva-intel-driver libva libvdpau-va-gl
+</code></pre>
+<p>Create a file: <code>/etc/modprobe.d/i915.conf</code> with the following line:</p>
+
+<pre><code>options i915 modeset=1
+</code></pre>
+<p>Create a file: <code>/etc/X11/xorg.conf.d/20-intel.conf</code> with the following content:</p>
+
+<pre><code>Section "Device"
+  Identifier "Card0"
+  Driver "intel"
+  VendorName "Intel Corporation"
+  BusID "PCI:0:2:0"
+EndSection
+</code></pre>
+
+<p>Initramfs:</p>
+
+<p>Edit the following lines in <code>/etc/mkinitcpio.conf</code></p>
+
+<pre><code>MODULES="intel_agp i915"
+FILES="/etc/modprobe.d/i915.conf"
+HOOKS="base udev autodetect modconf block lvm2 filesystems keyboard fsck"
+</code></pre>
+<p>Then regenerate the Initramfs image:</p>
+
+<pre><code># mkinitcpio -p linux
+</code></pre>
+
+<h2 id="other-useful-packages-for-gnome">Other useful packages for Gnome</h2>
+
+<ul>
+  <li>gnome-contro-panel</li>
+  <li>gnome-terminal</li>
+  <li>nautilus</li>
+  <li>gedit</li>
+  <li>gvfs-smb</li>
+  <li>gvfs-nfs</li>
+  <li>gvfs-afc</li>
+  <li>gvfs-afp</li>
+  <li>gvfs-gphoto2</li>
+</ul>
+</p>
+
+  		</div>
+		</div>
+	</section>
+	<br/>
+	<br/>
+	<section>
+  	<div class="row">
+    	<!--<div class=" col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8"> -->
+		<div class=" col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+			<div id="disqus_thread"></div>
+    </div>
+    </div>
+  </section>
+
+        <br/>
+        <br/>
+
+        
+
+<footer>
+
+    <div class="row">
+      <div class=" col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+        <hr/>
+        <p align="center">
+          <small>© 2014 JemZ.</small><br />
+          <small>Made with <a href="http://jekyllrb.com/">Jekyll</a> &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a> &mdash; Layout design based on <a href="http://pixelcog.com">Pixelcog Inc.</a></small>
+        </p>
+      </div>
+    </div>
+
+</footer>
+
+    
+ <!--   </div> -->
+
+
+
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'jemz'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  </body>
+
+</html>

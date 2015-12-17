@@ -1,0 +1,764 @@
+<!-- <div class="post"> -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>Karaf Tutorial Day 1</title>
+  <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+">
+
+
+  <link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Cabin" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  <link rel="shortcut icon" href="/favicon.ico?v=2" type="image/x-icon" sizes="16x16 32x32 64x64">
+  <link rel="icon" href="/favicon.ico?v=2" type="image/x-icon" sizes="16x16 32x32 64x64">
+
+
+  <link rel="canonical" href="http://jemz.ovh/tutorials/karaf-tutorial/day1/">
+  <link rel="alternate" type="application/atom+xml" title="JemZ Blog" href="http://jemz.ovh/feed.xml" />
+
+  <script src="/js/modernizr.js"></script>
+
+</head>
+
+
+<header>
+
+    <div class="row">
+      <div class=" col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+      <!-- <div class=" col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">-->
+        <br/>
+        <div class="pull-right">
+          <table class="table table-condensed table-bordered jemz-border">
+            <tr>
+              
+                
+		              
+	 	                 <td style="font-family: 'Cabin'; text-align: center; font-size: 90%;"><b><a class="page-link" href="/about/">About</a></b></td>
+                  
+                
+              
+                
+              
+                
+              
+                
+		              
+	 	                 <td style="font-family: 'Cabin'; text-align: center; font-size: 90%;"><b><a class="page-link" href="/contact/">Contact</a></b></td>
+                  
+                
+              
+                
+              
+                
+		              
+                
+              
+                
+		              
+                
+              
+                
+		              
+                
+              
+                
+		              
+                
+              
+                
+		              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+		              
+	 	                 <td style="font-family: 'Cabin'; text-align: center; font-size: 90%;"><b><a class="page-link" href="/projects/">Projects</a></b></td>
+                  
+                
+              
+                
+              
+                
+		              
+	 	                 <td style="font-family: 'Cabin'; text-align: center; font-size: 90%;"><b><a class="page-link" href="/tutorials/">Tutorials</a></b></td>
+                  
+                
+              
+              <td style="font-family: 'Cabin'; text-align: center; font-size: 90%;"><b><a class="page-link" href="/blog/">Blog</a></b></td>
+            </tr>
+          </table>
+        </div>
+        <!-- <h1>JemZ. Blog</h1>-->
+        <a href="/"><img src="/img/jemz-logo.png" width="150"/></a>
+        <hr/>
+      </div>
+    </div>
+  
+</header>
+
+
+
+<header>
+	<div class="row">
+		<div class=" col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+		    <h1>Karaf Tutorial Day 1</h1>
+		    <hr/>
+		</div>
+  </div>
+</header>
+
+<section>
+	<div class="row">
+  	<div class=" col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+    
+	    <p align="justified"><h1 id="hello-world">Hello World!</h1>
+
+<p>The tradition commands that all tutorials must have a <em>Hello World</em> sample. So let’s go and define a very simple sample. This sample will help you to understand the following concepts:</p>
+
+<ul>
+  <li>how to create a bundle</li>
+  <li>use OSGi Service-Consumer paradigm</li>
+  <li>dependency injection (<a href="http://aries.apache.org/modules/blueprint.html">Apache Aries Blueprint</a> )</li>
+  <li>dynamic configuration</li>
+  <li>deploy bundles in Karaf</li>
+  <li>OSGi bundle life cycle</li>
+</ul>
+
+<h3 class="no_toc" id="table-of-contents">Table of Contents</h3>
+
+<ul id="markdown-toc">
+  <li><a href="#hello-world" id="markdown-toc-hello-world">Hello World!</a>    <ul>
+      <li><a href="#karaf-development-setup" id="markdown-toc-karaf-development-setup">Karaf Development setup</a>        <ul>
+          <li><a href="#automating-bundle-manifests-with-maven-bundle-plugin" id="markdown-toc-automating-bundle-manifests-with-maven-bundle-plugin">Automating bundle manifests with <code>maven-bundle-plugin</code></a></li>
+          <li><a href="#other-maven-plugins" id="markdown-toc-other-maven-plugins">Other Maven plugins</a>            <ul>
+              <li><a href="#build-helper-maven-plugin" id="markdown-toc-build-helper-maven-plugin"><code>build-helper-maven-plugin</code></a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#hello-world-sample" id="markdown-toc-hello-world-sample"><em>Hello World</em> Sample</a>        <ul>
+          <li><a href="#hello-world-service" id="markdown-toc-hello-world-service">hello-world-service</a></li>
+          <li><a href="#hello-world-service-basic" id="markdown-toc-hello-world-service-basic">hello-world-service-basic</a>            <ul>
+              <li><a href="#blueprint" id="markdown-toc-blueprint">Blueprint</a></li>
+            </ul>
+          </li>
+          <li><a href="#hello-world-service-config" id="markdown-toc-hello-world-service-config">hello-world-service-config</a>            <ul>
+              <li><a href="#blueprint-1" id="markdown-toc-blueprint-1">Blueprint</a></li>
+            </ul>
+          </li>
+          <li><a href="#hello-world-service-config-admin" id="markdown-toc-hello-world-service-config-admin">hello-world-service-config-admin</a>            <ul>
+              <li><a href="#blueprint-2" id="markdown-toc-blueprint-2">Blueprint</a></li>
+            </ul>
+          </li>
+          <li><a href="#hello-world-service-caller" id="markdown-toc-hello-world-service-caller">hello-world-service-caller</a>            <ul>
+              <li><a href="#blueprint-3" id="markdown-toc-blueprint-3">Blueprint</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#installing-helloservice-sample-in-karaf" id="markdown-toc-installing-helloservice-sample-in-karaf">Installing HelloService sample in Karaf</a></li>
+      <li><a href="#userful-karaf-console-commands" id="markdown-toc-userful-karaf-console-commands">Userful Karaf console commands</a></li>
+      <li><a href="#whats-next" id="markdown-toc-whats-next">What’s next</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="karaf-development-setup">Karaf Development setup</h2>
+
+<p>I use Maven, I’m always thinking about testing Gradle but I haven’t been able to find the time or the project to get started with it.</p>
+
+<h3 id="automating-bundle-manifests-with-maven-bundle-plugin">Automating bundle manifests with <code>maven-bundle-plugin</code></h3>
+
+<p>I usually use the following configuration in my parent pom in order to build my OSGi bundles:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="lineno"> 1</span> <span class="nt">&lt;plugin&gt;</span>
+<span class="lineno"> 2</span>     <span class="nt">&lt;groupId&gt;</span>org.apache.felix<span class="nt">&lt;/groupId&gt;</span>
+<span class="lineno"> 3</span>     <span class="nt">&lt;artifactId&gt;</span>maven-bundle-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="lineno"> 4</span>     <span class="nt">&lt;version&gt;</span>${maven.bundle.plugin.version}<span class="nt">&lt;/version&gt;</span>
+<span class="lineno"> 5</span>     <span class="nt">&lt;extensions&gt;</span>true<span class="nt">&lt;/extensions&gt;</span>
+<span class="lineno"> 6</span>     <span class="nt">&lt;configuration&gt;</span>
+<span class="lineno"> 7</span>         <span class="nt">&lt;instructions&gt;</span>
+<span class="lineno"> 8</span>             <span class="nt">&lt;Bundle-SymbolicName&gt;</span>${project.artifactId}<span class="nt">&lt;/Bundle-SymbolicName&gt;</span>
+<span class="lineno"> 9</span>             <span class="nt">&lt;Bundle-Version&gt;</span>${project.version}<span class="nt">&lt;/Bundle-Version&gt;</span>
+<span class="lineno">10</span>             <span class="nt">&lt;Export-Package&gt;</span>!${bundle.namespace}.internal.*,${bundle.namespace}.*;version=&quot;${project.version}&quot;<span class="nt">&lt;/Export-Package&gt;</span>
+<span class="lineno">11</span>             <span class="nt">&lt;Private-Package&gt;</span>${bundle.namespace}.internal.*<span class="nt">&lt;/Private-Package&gt;</span>
+<span class="lineno">12</span>             <span class="nt">&lt;_include&gt;</span>-osgi.bnd<span class="nt">&lt;/_include&gt;</span>
+<span class="lineno">13</span>         <span class="nt">&lt;/instructions&gt;</span>
+<span class="lineno">14</span>     <span class="nt">&lt;/configuration&gt;</span>
+<span class="lineno">15</span>     <span class="nt">&lt;executions&gt;</span>
+<span class="lineno">16</span>         <span class="nt">&lt;execution&gt;</span>
+<span class="lineno">17</span>             <span class="nt">&lt;id&gt;</span>bundle-manifest<span class="nt">&lt;/id&gt;</span>
+<span class="lineno">18</span>             <span class="nt">&lt;phase&gt;</span>process-classes<span class="nt">&lt;/phase&gt;</span>
+<span class="lineno">19</span>             <span class="nt">&lt;goals&gt;</span>
+<span class="lineno">20</span>                 <span class="nt">&lt;goal&gt;</span>manifest<span class="nt">&lt;/goal&gt;</span>
+<span class="lineno">21</span>             <span class="nt">&lt;/goals&gt;</span>
+<span class="lineno">22</span>         <span class="nt">&lt;/execution&gt;</span>
+<span class="lineno">23</span>     <span class="nt">&lt;/executions&gt;</span>
+<span class="lineno">24</span> <span class="nt">&lt;/plugin&gt;</span></code></pre></figure>
+
+<p>This is a generic configuration which simplifies the Manifest creation of OSGi bundles.</p>
+
+<p>As <code>Bundle-SymbolicName</code> I use the maven project <code>artifactId</code> property and for the <code>Bundle-Version</code> I use the maven project <code>version</code>.<br />
+I set a property <code>bundle.namespace</code> with the base package of my bundle classes. Every package under <code>bundle.namespace</code> is exported but subpackage <code>internal</code> which is kept private.</p>
+
+<p>Additionally I include the osgi.bnd in case I need to set specifically an OSGi manifest entry (i.e. Fragment-Host, etc…)</p>
+
+<p><em>More information about <code>maven-bundle-plugin</code>can be found <a href="http://svn.apache.org/repos/asf/felix/releases/maven-bundle-plugin-2.5.4/doc/site/index.html">here</a></em></p>
+
+<h3 id="other-maven-plugins">Other Maven plugins</h3>
+
+<p>Other plugins I use are:</p>
+
+<h4 id="build-helper-maven-plugin"><code>build-helper-maven-plugin</code></h4>
+
+<p>I use it to upload additional artifacts (besides the bundle itself) to the Maven Repository. In example: config files.</p>
+
+<p>This is the configuration I use in my parent pom.</p>
+
+<pre><code class="language-xml">&lt;plugin&gt;
+    &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+    &lt;artifactId&gt;build-helper-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;${build.helper.plugin.version}&lt;/version&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;id&gt;attach-artifacts&lt;/id&gt;
+            &lt;phase&gt;package&lt;/phase&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;attach-artifact&lt;/goal&gt;
+            &lt;/goals&gt;
+            &lt;configuration&gt;
+                &lt;artifacts&gt;
+                    &lt;artifact&gt;
+                        &lt;file&gt;target/classes/${bundle.namespace}.cfg&lt;/file&gt;
+                        &lt;type&gt;cfg&lt;/type&gt;
+                    &lt;/artifact&gt;
+                &lt;/artifacts&gt;
+            &lt;/configuration&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+&lt;/plugin&gt;
+
+</code></pre>
+
+<p>The limitation of this configuration is that the *.cfg file must be named as the base package of the bundle. On the other hand this helps me to know which cfg file belongs to which bundle.</p>
+
+<p><em>More information about <code>build-helpler-maven-plugin</code>can be found <a href="http://mojo.codehaus.org/build-helper-maven-plugin/">here</a></em></p>
+
+<h2 id="hello-world-sample"><em>Hello World</em> Sample</h2>
+
+<p>I will build four bundles:</p>
+
+<ul>
+  <li><code>hello-world-service</code>: simple service definition</li>
+  <li><code>hello-world-service-basic</code>: simple <code>HelloService</code> implementation</li>
+  <li><code>hello-world-service-config</code>: another <code>HelloService</code> implmentation with configuration</li>
+  <li><code>hello-world-service-caller</code>: a <code>hello-world-service</code> consumer</li>
+</ul>
+
+<h3 id="hello-world-service">hello-world-service</h3>
+
+<p>This is the service definition. Usually we will use a Java(TM) interface in order to implement service definitions.</p>
+
+<p><strong>org.jemz.karaf.tutorial.hello.service.IHelloService.java</strong></p>
+
+<pre><code class="language-java">public interface IHelloService {
+    public String getMessage();
+}
+</code></pre>
+<p>This service just returns a message string.</p>
+
+<h3 id="hello-world-service-basic">hello-world-service-basic</h3>
+
+<p>The most basic implementation of <code>HelloService</code> is to return a fixed string as shown below:</p>
+
+<p><strong>org.jemz.karaf.tutorial.hello.service.basic.internal.HelloServiceBasic</strong></p>
+
+<pre><code class="language-java">public class HelloServiceBasic implements IHelloService {
+    @Override
+    public String getMessage() {
+      return "I am a HelloServiceBasic!!";
+    }
+}
+</code></pre>
+
+<h4 id="blueprint">Blueprint</h4>
+
+<p>Just define HelloServiceBasic as a IHelloService implementation:</p>
+
+<pre><code class="language-xml">&lt;blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+
+    &lt;bean   id="hello-service-basic"
+            class="org.jemz.karaf.tutorial.hello.service.basic.internal.HelloServiceBasic"
+            init-method="startup"
+            destroy-method="shutdown"&gt;
+    &lt;/bean&gt;
+
+    &lt;service ref="hello-service-basic" interface="org.jemz.karaf.tutorial.hello.service.IHelloService" /&gt;
+
+&lt;/blueprint&gt;
+</code></pre>
+
+<p>In the bean definition I have added a <code>init-method</code> and a <code>destroy-method</code> in order to know if the bundle has started or it has been stopped.</p>
+
+<h3 id="hello-world-service-config">hello-world-service-config</h3>
+
+<p>This implementation will return a message got from configuration file:</p>
+
+<p><strong>org.jemz.karaf.tutorial.hello.service.config.cfg</strong></p>
+
+<pre><code class="language-bash">
+org.jemz.karaf.tutorial.hello.msg="I am a HelloServiceConfig!!"
+
+</code></pre>
+
+<p>The implementation is as follows</p>
+
+<p><strong>org.jemz.karaf.tutorial.hello.service.config.internal.HelloServiceConfig</strong></p>
+
+<pre><code class="language-java">public class HelloServiceConfig implements IHelloService {
+
+    private static final String HELLO_SERVICE_MSG_CONFIG = "org.jemz.karaf.tutorial.hello.service.msg";
+    private String msg = null;
+
+    /**
+     * Blueprint: set configuration properties
+     */
+    public void setHelloServiceConfiguration(Properties properties) {
+      msg = (String) properties.get(HELLO_SERVICE_MSG_CONFIG);
+    }
+
+    @Override
+    public String getMessage() {
+      return "*** " + msg + " ***";
+    }
+}
+</code></pre>
+
+<h4 id="blueprint-1">Blueprint</h4>
+
+<p>Define as IHelloService implementation.Default value for config message and setup of dynamic configuration.</p>
+
+<pre><code class="language-xml">&lt;blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+
+    &lt;cm:property-placeholder persistent-id="org.jemz.karaf.tutorial.hello.service.config" update-strategy="reload" &gt;
+        &lt;cm:default-properties&gt;
+            &lt;cm:property name="org.jemz.karaf.tutorial.hello.service.msg" value="Hello World!"/&gt;
+        &lt;/cm:default-properties&gt;
+    &lt;/cm:property-placeholder&gt;
+
+    &lt;bean   id="hello-service-config"
+            class="org.jemz.karaf.tutorial.hello.service.config.internal.HelloServiceConfig"
+            init-method="startup"
+            destroy-method="shutdown"&gt;
+        &lt;property name="helloServiceConfiguration"&gt;
+            &lt;props&gt;
+                &lt;prop key="org.jemz.karaf.tutorial.hello.service.msg" value="${org.jemz.karaf.tutorial.hello.service.msg}"/&gt;
+            &lt;/props&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;
+
+    &lt;service ref="hello-service-config" interface="org.jemz.karaf.tutorial.hello.service.IHelloService" /&gt;
+&lt;/blueprint&gt;
+
+</code></pre>
+<p>The configuration file should be installed under <code>${karaf.home}/etc</code>. Changes on the file are dynamically updated on the OSGi bundle.</p>
+
+<h3 id="hello-world-service-config-admin">hello-world-service-config-admin</h3>
+
+<p>In the previous example the message returned from the service implementation was read from a configuration file from a fixed property: <code>org.jemz.karaf.tutorial.hello.msg</code>. The bundle receives the updated property value whenever its value changes in the file.</p>
+
+<p>On one side, the bundle <code>fileinstall</code> is in charge of watching for the updates in the configuration file and load them into de <code>ConfigurationAdmin</code> Service. The bundle is reloaded when a change is detected because of the <code>policy-strategy=reload</code> attribute in the blueprint component.</p>
+
+<p>But, what if your bundle can manage additional properties, which we don’t want them to be in the configuration file. Maybe a hidden backdoor to do something we don’t want anyone to know.</p>
+
+<p>In this sample, our service, will be able to add a prefix and sufix to the message. The prefix and sufix are set by two new hidden properties:</p>
+
+<ul>
+  <li><code>org.jemz.karaf.tutorial.hello.service.msg.sufix</code></li>
+  <li><code>org.jemz.karaf.tutorial.hello.service.msg.prefix</code></li>
+</ul>
+
+<p>This implementation will return a message got from configuration file:</p>
+
+<p><strong>org.jemz.karaf.tutorial.hello.service.config.admin.cfg</strong></p>
+
+<pre><code class="language-bash">
+org.jemz.karaf.tutorial.hello.msg="I am a HelloServiceConfig!!"
+
+</code></pre>
+
+<p>The implementation is as follows</p>
+
+<p><strong>org.jemz.karaf.tutorial.hello.service.config.admin.internal.HelloServiceConfigAdmin</strong></p>
+
+<pre><code class="language-java">public class HelloServiceConfigAdmin implements IHelloService {
+
+    // Service PID - persistent-id
+    private static final String HELLO_SERVICE_CONFIG_ADMIN_PID =  "org.jemz.karaf.tutorial.hello.service.config.admin";
+
+    public static final String HELLO_SERVICE_MSG_CONFIG = "org.jemz.karaf.tutorial.hello.service.msg";
+    /*
+     Hidden properties
+     */
+     private static final String HELLO_SERVICE_MSG_CONFIG_SUFIX = "org.jemz.karaf.tutorial.hello.service.msg.sufix";
+     private static final String HELLO_SERVICE_MSG_CONFIG_PREFIX = "org.jemz.karaf.tutorial.hello.service.msg.prefix";
+
+     private String msg = null;
+     private String suffix = "";
+     private String prefix = "";
+
+     /**
+      * Blueprint reference: init-method
+      */
+     public void startup() {
+         System.out.println("HELLO SERVICE CONFIG STARTED");
+     }
+
+     /**
+      * Blueprint reference: destroy-method
+      */
+     public void shutdown() {
+         System.out.println("HELLO SERVICE CONFIG SHUTDOWN");
+     }
+
+     /**
+      * Blueprint: set configuration properties
+      */
+     public void setHelloServiceConfiguration(ConfigurationAdmin cfgAdmin) {
+         try {
+             Configuration config = cfgAdmin.getConfiguration(HELLO_SERVICE_CONFIG_ADMIN_PID);
+             Dictionary&lt;String, Object&gt; serviceProps = config.getProperties();
+             Enumeration&lt;String&gt; en = serviceProps.keys();
+             while (en.hasMoreElements()) {
+                 String key = en.nextElement();
+                 if(key.equals(HELLO_SERVICE_MSG_CONFIG)) {
+                     msg = (String) serviceProps.get(key);
+                 } else if (key.equals(HELLO_SERVICE_MSG_CONFIG_SUFFIX)) {
+                     suffix = (String) serviceProps.get(key);
+                 } else if (key.equals(HELLO_SERVICE_MSG_CONFIG_PREFIX)) {
+                     prefix = (String) serviceProps.get(key);
+                 } else {
+                     System.out.println("UNUSED KEY: " + key + " VAL: " + (String)serviceProps.get(key));
+                 }
+             }
+           } catch(NullPointerException e) {
+            // Config file doesn't exist
+              msg = "Default Message";
+          } catch (IOException e) {
+              // Ignore error
+          }
+     }
+
+     @Override
+     public String getMessage() {
+         return prefix + msg + suffix;
+     }
+   }
+</code></pre>
+
+<p>The properties of the file are now retrieved from <code>ConfigurationAdmin</code> service directly.</p>
+
+<h4 id="blueprint-2">Blueprint</h4>
+
+<p>Define as IHelloService implementation. The <code>setHelloServiceConfiguration</code> method now receives the implementation of the current <code>ConfigurationAdmin</code> service.</p>
+
+<pre><code class="language-xml">&lt;blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        &gt;
+
+    &lt;cm:property-placeholder persistent-id="org.jemz.karaf.tutorial.hello.service.config.admin" update-strategy="reload" /&gt;
+
+    &lt;bean   id="hello-service-config-admin"
+            class="org.jemz.karaf.tutorial.hello.service.config.admin.internal.HelloServiceConfigAdmin"
+            init-method="startup"
+            destroy-method="shutdown"&gt;
+        &lt;property name="helloServiceConfiguration" ref="config-admin"/&gt;
+    &lt;/bean&gt;
+
+    &lt;service ref="hello-service-config-admin" interface="org.jemz.karaf.tutorial.hello.service.IHelloService" /&gt;
+
+    &lt;reference id="config-admin" interface="org.osgi.service.cm.ConfigurationAdmin" availability="mandatory"/&gt;
+
+&lt;/blueprint&gt;
+
+
+</code></pre>
+<p>The configuration file should be installed under <code>${karaf.home}/etc</code>. Changes on the file are dynamically updated on the OSGi bundle. Now it is possible to add any property to it and it will automatically upload on the bundle.</p>
+
+<h3 id="hello-world-service-caller">hello-world-service-caller</h3>
+
+<p>This bundle will consume the <code>HelloService</code>:</p>
+
+<p><strong>org.jemz.karaf.tutorial.hello.service.caller.internal.HelloServiceCaller</strong></p>
+
+<pre><code class="language-java">public class HelloServiceCaller {
+   private IHelloService helloService = null;
+
+  /**
+    * Blueprint reference: bind-method
+    * @param serv
+    */
+   public void setHelloService(IHelloService serv) {
+       helloService = serv;
+       System.out.println("SET HELLO SERVICE: " + helloService.getMessage());
+   }
+
+   /**
+    * Blueprint reference: unbind-method
+    * @param serv
+    */
+   public void unsetHelloService(IHelloService serv) {
+       helloService = null;
+       System.out.println("UNSET HELLO SERVICE");
+   }
+}
+</code></pre>
+
+<h4 id="blueprint-3">Blueprint</h4>
+
+<p>This bundle will register a reference to a IHelloService implementation:</p>
+
+<pre><code class="language-xml">&lt;blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+
+    &lt;bean   id="hello-service-caller"
+            class="org.jemz.karaf.tutorial.hello.service.caller.internal.HelloServiceCaller"
+            init-method="startup"
+            destroy-method="shutdown"/&gt;
+
+    &lt;reference id="hello-service" interface="org.jemz.karaf.tutorial.hello.service.IHelloService"
+               availability="optional"&gt;
+        &lt;reference-listener bind-method="setHelloService"
+                            unbind-method="unsetHelloService"&gt;
+            &lt;ref component-id="hello-service-caller"/&gt;
+        &lt;/reference-listener&gt;
+    &lt;/reference&gt;
+&lt;/blueprint&gt;
+</code></pre>
+
+<h2 id="installing-helloservice-sample-in-karaf">Installing HelloService sample in Karaf</h2>
+
+<p>Basically you can install your bundles in a Karaf installation in multiple different ways.</p>
+
+<p>The simplest one is to place all bundle jar files under ${karaf.home}/deploy folder. OSGi bundles will be automatically installed<br />
+and started.</p>
+
+<p>Another way is using the Maven descriptor or using a URL to the jar files.</p>
+
+<p>Here I will use the Maven descriptor as:<br />
+  <code>bundle:install mvn:&lt;groupid&gt;/&lt;artifactId&gt;/&lt;version&gt;[/&lt;type&gt;/&lt;classifier&gt;]</code></p>
+
+<pre><code class="language-bash">karaf@root()&gt; install mvn:org.jemz.karaf.tutorial/hello-world-service/1.0.0-SNAPSHOT
+Bundle ID: 64
+</code></pre>
+
+<p>The bundle is installed with ID 64, but it is not yet started:</p>
+
+<pre><code class="language-bash">karaf@root()&gt; list
+START LEVEL 100 , List Threshold: 50
+ID | State     | Lvl | Version        | Name
+-----------------------------------------------------------
+64 | Installed |  80 | 1.0.0.SNAPSHOT | hello-world-service
+</code></pre>
+
+<p>You can start the bundle with command: <code>bundle:start &lt;bundleID&gt;</code>. It is also possible to install and start a bundle with<br />
+the install command plus <code>-s</code> flag.</p>
+
+<pre><code class="language-bash">karaf@root()&gt; start 64
+karaf@root()&gt; list
+START LEVEL 100 , List Threshold: 50
+ID | State  | Lvl | Version        | Name
+--------------------------------------------------------
+64 | Active |  80 | 1.0.0.SNAPSHOT | hello-world-service
+</code></pre>
+
+<p>It may be useful to check the manifest of the bundle to see which packages, services it is exporting/importing, or any other<br />
+information.</p>
+
+<pre><code class="language-bash">karaf@root()&gt; headers 64
+
+hello-world-service (64)
+------------------------
+Created-By = Apache Maven Bundle Plugin
+Manifest-Version = 1.0
+Bnd-LastModified = 1432134646433
+Build-Jdk = 1.8.0_40
+Built-By = jmartinez
+Tool = Bnd-2.3.0.201405100607
+
+Bundle-ManifestVersion = 2
+Bundle-SymbolicName = hello-world-service
+Bundle-Version = 1.0.0.SNAPSHOT
+Bundle-Name = hello-world-service
+Bundle-Description = Karaf Tutorial :: hello-world-service
+Bundle-DocURL = https://jomarmar.github.io
+Bundle-Vendor = JemZ
+
+Require-Capability =
+	osgi.ee;filter:=(&amp;(osgi.ee=JavaSE)(version=1.8))
+
+Export-Package =
+	org.jemz.karaf.tutorial.hello.service;version=1.0.0.SNAPSHOT
+
+</code></pre>
+
+<p>Also you can check if the package is really exported with <code>exports</code> command and which bundle is exporting it.</p>
+
+<pre><code class="language-bash">karaf@root()&gt; exports | grep org.jemz
+org.jemz.karaf.tutorial.hello.service          | 1.0.0.SNAPSHOT | 64 | hello-world-service
+</code></pre>
+
+<p>Now it is time to install <code>hello-world-service-basic</code> implementation:</p>
+
+<pre><code class="language-bash">karaf@root()&gt; install -s mvn:org.jemz.karaf.tutorial/hello-world-service-basic/1.0.0-SNAPSHOT
+HELLO SERVICE BASIC STARTED
+Bundle ID: 65
+</code></pre>
+
+<p>You can check the IHelloService implementation by installing the <code>hello-world-service-caller</code> consumer:</p>
+
+<pre><code class="language-bash">karaf@root()&gt; install -s mvn:org.jemz.karaf.tutorial/hello-world-service-caller/1.0.0-SNAPSHOT
+HELLO SERVICE CALLER STARTED
+SET HELLO SERVICE: I am a HelloServiceBasic!!
+Bundle ID: 66
+</code></pre>
+
+<p>Place <code>org.jemz.karaf.tutorial.hello.service.config.cfg</code> in ${karaf.home}/etc folder and install <code>hello-world-service-config</code>.<br />
+As you can see the new service is not consumed by the caller as it has not been started yet.</p>
+
+<pre><code class="language-bash">karaf@root()&gt; install mvn:org.jemz.karaf.tutorial/hello-world-service-config/1.0.0-SNAPSHOT
+Bundle ID: 67
+</code></pre>
+
+<p>If you stop <code>hello-world-service-basic</code> bundle and then start the <code>hello-world-service-config</code> one is automatically registered by the <code>hello-world-service-caller</code> service.</p>
+
+<pre><code class="language-bash">karaf@root()&gt; stop 65
+UNSET HELLO SERVICE
+HELLO SERVICE BASIC SHUTDOWN
+karaf@root()&gt; start 67
+HELLO SERVICE CONFIG STARTED
+SET HELLO SERVICE: *** "I am a HelloServiceConfig!!" ***
+karaf@root()&gt;
+</code></pre>
+<p>If you edit <code>org.jemz.karaf.tutorial.hello.service.config.cfg</code>, the service <code>hello-world-service-config</code> is reloaded with the new value:</p>
+
+<pre><code class="language-bash">karaf@root()&gt; UNSET HELLO SERVICE
+HELLO SERVICE CONFIG SHUTDOWN
+HELLO SERVICE CONFIG STARTED
+SET HELLO SERVICE: *** "I am a HelloServiceConfig EDITTED!!" ***
+</code></pre>
+<p>Finally if you start <code>hello-world-service-basic</code> it won’t be registered by the caller. That is because in the blueprint I have defined the consumer as<br />
+a <code>reference</code> tag and not as a <code>reference-list</code>. You can find more information about blueprint <a href="http://aries.apache.org/modules/blueprint.html">here</a><br />
+or at this <a href="http://www.ibm.com/developerworks/library/os-osgiblueprint/">IBM’s article</a>.<br />
+The service is automatically registered whenever the <code>hello-world-service-config</code> is stopped.</p>
+
+<pre><code class="language-bash">karaf@root()&gt; start 65
+HELLO SERVICE BASIC STARTED
+karaf@root()&gt; stop 67
+SET HELLO SERVICE: I am a HelloServiceBasic!!
+HELLO SERVICE CONFIG SHUTDOWN
+</code></pre>
+<p>### Playing with hello-world-service-config-admin</p>
+
+<p>Installing <code>hello-world-service-config-admin</code></p>
+
+<pre><code class="language-bash">karaf@root()&gt; install -s mvn:org.jemz.karaf.tutorial/hello-world-service/1.0.0-SNAPSHOT
+Bundle ID: 64
+karaf@root()&gt; install -s mvn:org.jemz.karaf.tutorial/hello-world-service-config-admin/1.0.0-SNAPSHOT
+HELLO SERVICE CONFIG STARTED
+Bundle ID: 65
+karaf@root()&gt; install -s mvn:org.jemz.karaf.tutorial/hello-world-service-caller/1.0.0-SNAPSHOT
+HELLO SERVICE CALLER STARTED
+SET HELLO SERVICE: Default Message
+Bundle ID: 66
+</code></pre>
+<p><code>Default Message</code> is displayed as we haven’t install the configuration file yet. Copy from resources <code>org.jemz.karaf.tutorial.hello.service.config.admin.cfg</code> to $KARAF_HOME/etc folder.</p>
+
+<p>Now the displayed message is: <code>"I am a HelloServiceConfigAdmin!!"</code>. Now you can add more properties to the file like:</p>
+
+<pre><code>org.jemz.karaf.tutorial.hello.service.msg="I am a HelloServiceConfigAdmin!!"
+org.jemz.karaf.tutorial.hello.service.msg.suffix=***
+org.jemz.karaf.tutorial.hello.service.msg.prefix=---
+</code></pre>
+
+<p>Then the displayed message will be: <code>---"I am a HelloServiceConfigAdmin!!"***</code>.<br />
+It is also possible to add new properties from the console as follows:</p>
+
+<pre><code>karaf@root()&gt; config:edit org.jemz.karaf.tutorial.hello.service.config.admin
+karaf@root()&gt;        
+karaf@root()&gt; config:property-list
+   felix.fileinstall.filename = file:/home/jmartinez/temp/apache-karaf-3.0.4/etc/org.jemz.karaf.tutorial.hello.service.config.admin.cfg
+   org.jemz.karaf.tutorial.hello.service.msg = "I am a HelloServiceConfigAdmin!!"
+   org.jemz.karaf.tutorial.hello.service.msg.prefix = ---
+   org.jemz.karaf.tutorial.hello.service.msg.suffix = ***
+   service.pid = org.jemz.karaf.tutorial.hello.service.config.admin
+karaf@root()&gt; config:property-set testprop testvalue
+karaf@root()&gt;        
+karaf@root()&gt; config:update
+UNSET HELLO SERVICE
+HELLO SERVICE CONFIG SHUTDOWN
+karaf@root()&gt; UNUSED KEY: felix.fileinstall.filename VAL: file:/home/jmartinez/temp/apache-karaf-3.0.4/etc/org.jemz.karaf.tutorial.hello.service.config.admin.cfg
+UNUSED KEY: service.pid VAL: org.jemz.karaf.tutorial.hello.service.config.admin
+UNUSED KEY: testprop VAL: testvalue
+HELLO SERVICE CONFIG STARTED
+SET HELLO SERVICE: ---"I am a HelloServiceConfigAdmin!!"***
+
+karaf@root()&gt;
+
+</code></pre>
+
+<h2 id="userful-karaf-console-commands">Userful Karaf console commands</h2>
+
+<p>config:edit [PID] - Edit config file for PID</p>
+
+<p>config:property-list - List properties in config file</p>
+
+<p>config:property-set [key] [value] - Sets a new value or new property if it doesn’t exist.</p>
+
+<p>config:update - Write changes on the file.</p>
+
+<h2 id="whats-next">What’s next</h2>
+
+<p>You can practice with these bundles to see how blueprint injection works and learn about OSGi’s lifecycle. Tomorrow we will start a new project based on<br />
+multiple bundles implementing the same service. I will also show you how Karaf console can be easily extended.</p>
+</p>
+    
+    </div>
+  </div>
+</section>
+
+
+
+<footer>
+
+    <div class="row">
+      <div class=" col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+        <hr/>
+        <p align="center">
+          <small>© 2014 JemZ.</small><br />
+          <small>Made with <a href="http://jekyllrb.com/">Jekyll</a> &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a> &mdash; Layout design based on <a href="http://pixelcog.com">Pixelcog Inc.</a></small>
+        </p>
+      </div>
+    </div>
+
+</footer>
+

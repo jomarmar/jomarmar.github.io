@@ -1,0 +1,103 @@
+{% capture location %}{{ page.url | remove_first:'/' | split:'/' | first }}{% endcapture %}<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+                <meta name="description" content="">
+	        <meta name="author" content="">
+		<title>{% if page.title %}{{ page.title }}{% else %}PixelCog{% endif %}</title>
+		
+		<link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+{% if page.blogfeed %}
+		<link rel="alternate" type="application/atom+xml" title="{{ site.name }} — Feed" href="{{ site.url }}/blog/feed.atom" />
+{% endif %}
+		<link rel="stylesheet" href="/css/main.css" />
+		<link rel="stylesheet" href="/css/bootstrap.min.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="container">
+		<div class="wrapper{% if location == '' %} home{% endif %}">
+			<header>
+				<h1><a href="/"><img src="/img/pixelcog-logo.png" alt="{{ site.name }}" width="300" /></a></h1>
+				<nav class="nav nav-pills"><ul>
+					<li><a {% if location == 'about' %}class="active" {% endif %}href="/about/">About</a></li>
+					<li><a {% if location == 'projects' %}class="active" {% endif %}href="/projects/">Projects</a></li>
+					<li><a {% if location == 'blog' %}class="active" {% endif %}href="/blog/">Blog</a></li>
+					<li><a {% if location == 'contact' %}class="active" {% endif %}href="/contact/">Contact</a></li>
+				</ul></nav>
+			</header>
+			<section>
+				{{ content }}
+			</section>
+			<footer>
+{% if page.nobio != true %}{% if location != '' %}
+				<img class="avatar" src="http://www.gravatar.com/avatar/33f90637d77f8d4da67faafd3af6597e?s=144" alt="Me" />
+{% endif %}
+				<p>PixelCog is the home of <a href="/about/">Mike Greiling</a>, freelance programmer, consultant, and entrepeneur.</p>
+				<p><a href="http://github.com/mikegreiling">github</a> | <a href="http://twitter.com/mikegreiling">twitter</a> | <a href="http://facebook.com/mike.greiling">facebook</a></p>
+{% endif %}
+				<p>
+					<small>© {{ site.time | date: '%Y' }} PixelCog Inc.</small><br />
+					<small>Made with <a href="http://jekyllrb.com/">Jekyll</a> &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small>
+				</p>
+			</footer>
+<div class="row">
+        <div class="col-lg-6">
+          <h4>Subheading</h4>
+          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+          <h4>Subheading</h4>
+          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+          <h4>Subheading</h4>
+          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        </div>
+
+        <div class="col-lg-6">
+          <h4>Subheading</h4>
+          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+          <h4>Subheading</h4>
+          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+          <h4>Subheading</h4>
+          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p>&copy; Company 2014</p>
+      </footer>
+		</div>
+	</div>
+
+		<script src="/js/jquery-1.11.1.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-20587204-1']);
+			_gaq.push(['_trackPageview']);
+			
+			var disqus_shortname  = 'pixelcog',
+			    disqus_identifier = '{{ page.path | split:'/' | last | cgi_escape }}',
+			    disqus_url        = '{{ site.url }}{{ page.url | uri_escape }}'
+			;
+			(function() {
+				var load = function(src){
+					var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = src;
+					var e = document.getElementsByTagName('script')[0]; e.parentNode.insertBefore(s, e);
+				};
+				load(('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js');
+				load('//' + disqus_shortname + '.disqus.com/count.js');
+				if (document.getElementById('disqus_thread')) {
+					load('//' + disqus_shortname + '.disqus.com/embed.js');
+				}
+			})();
+		</script>
+	</body>
+</html>

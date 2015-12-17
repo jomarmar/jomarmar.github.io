@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>Archlinux: initial setup and installation</title>
+  <meta name="description" content="Hardware DescriptionModel: Slimbook 715-Intel i7CPU: Intel i7 - 4550U, 1.5GHz, Turbo Boost 3.0, 2 Core 4 Threads, 4M Cache +infoGraphics Card: Intel Graphics...">
+
+
+  <link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Cabin" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  <link rel="shortcut icon" href="/favicon.ico?v=2" type="image/x-icon" sizes="16x16 32x32 64x64">
+  <link rel="icon" href="/favicon.ico?v=2" type="image/x-icon" sizes="16x16 32x32 64x64">
+
+
+  <link rel="canonical" href="http://jemz.ovh/blog/os/2015/12/archlinux-installation.html">
+  <link rel="alternate" type="application/atom+xml" title="JemZ Blog" href="http://jemz.ovh/feed.xml" />
+
+  <script src="/js/modernizr.js"></script>
+
+</head>
+
+
+  <body>
+
+    <header>
+
+    <div class="row">
+      <div class=" col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+      <!-- <div class=" col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">-->
+        <br/>
+        <div class="pull-right">
+          <table class="table table-condensed table-bordered jemz-border">
+            <tr>
+              
+                
+		              
+	 	                 <td style="font-family: 'Cabin'; text-align: center; font-size: 90%;"><b><a class="page-link" href="/about/">About</a></b></td>
+                  
+                
+              
+                
+              
+                
+              
+                
+		              
+	 	                 <td style="font-family: 'Cabin'; text-align: center; font-size: 90%;"><b><a class="page-link" href="/contact/">Contact</a></b></td>
+                  
+                
+              
+                
+              
+                
+		              
+                
+              
+                
+		              
+                
+              
+                
+		              
+                
+              
+                
+		              
+                
+              
+                
+		              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+		              
+	 	                 <td style="font-family: 'Cabin'; text-align: center; font-size: 90%;"><b><a class="page-link" href="/projects/">Projects</a></b></td>
+                  
+                
+              
+                
+              
+                
+		              
+	 	                 <td style="font-family: 'Cabin'; text-align: center; font-size: 90%;"><b><a class="page-link" href="/tutorials/">Tutorials</a></b></td>
+                  
+                
+              
+              <td style="font-family: 'Cabin'; text-align: center; font-size: 90%;"><b><a class="page-link" href="/blog/">Blog</a></b></td>
+            </tr>
+          </table>
+        </div>
+        <!-- <h1>JemZ. Blog</h1>-->
+        <a href="/"><img src="/img/jemz-logo.png" width="150"/></a>
+        <hr/>
+      </div>
+    </div>
+  
+</header>
+
+
+
+
+
+<!--    <div class="page-content"> -->
+
+        	<section>
+		<div class="row">
+			<div class=" col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+      	<!-- <div class=" col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">-->
+	    	<header class="post-header">
+	      	<h1>Archlinux: initial setup and installation</h1>
+	      	<p class="post-meta">Installation of Archlinux on an Intel i7 laptop with 8 GB RAM, 120 GB SSD and Intel Graphics HD 5000.<span class="post-meta pull-right">Dec 16, 2015</span></p>
+
+        </header>
+
+				
+
+	    	<p align="justified"><h2 id="hardware-description">Hardware Description</h2>
+
+<p><strong>Model:</strong> <a href="https://slimbook.es">Slimbook</a> 715-Intel i7</p>
+
+<p><strong>CPU:</strong> Intel i7 - 4550U, 1.5GHz, Turbo Boost 3.0, 2 Core 4 Threads, 4M Cache <a href="https://slimbook.es/tutoriales/slimbook/41-comparativa-procesador-i7">+info</a></p>
+
+<p><strong>Graphics Card:</strong> Intel Graphics HD 5000</p>
+
+<p><strong>RAM:</strong> 8GB</p>
+
+<p><strong>SDD:</strong> 120GB</p>
+
+<p><strong>Display:</strong> 13.3” FullHD 1920x1080px LED</p>
+
+<p><strong>Wireless LAN:</strong> Intel A/C Dual Band 802.11 b/g/n</p>
+
+<p><strong>Bluetooth:</strong> 4.0</p>
+
+<p><strong>Camera:</strong> 2mp</p>
+
+<p><strong>Others:</strong></p>
+
+<ul>
+  <li>2 USB 3.0 ports</li>
+  <li>Mini-HDMI</li>
+  <li>SD/MMC</li>
+  <li>External RJ45 (LAN) Adapter</li>
+</ul>
+
+<h2 id="archlinux-os">Archlinux OS</h2>
+
+<h3 id="preparation">Preparation</h3>
+
+<p>Follow <a href="https://wiki.archlinux.org/index.php/Category:Getting_and_installing_Arch">this</a> for instructions on downloading the installation medium and methods for booting it to the target machine.</p>
+
+<h3 id="network">Network</h3>
+
+<p>Usually network works out-of-the-box when booting from the installation medium. Nevertheless, if problems are found:</p>
+
+<h4 id="wireless">Wireless</h4>
+
+<p>Retrieve available network interfaces with:</p>
+
+<pre><code># ip a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: enp2s0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc fq_codel state DOWN group default qlen 1000
+    link/ether 00:16:96:e3:13:f2 brd ff:ff:ff:ff:ff:ff
+3: wlp3s0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether b4:6d:83:9a:9e:53 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.0.132/24 brd 192.168.0.255 scope global dynamic wlp3s0
+       valid_lft 84162sec preferred_lft 84162sec
+    inet6 fe80::b66d:83ff:fe9a:9e53/64 scope link
+       valid_lft forever preferred_lft forever
+</code></pre>
+<p>In this case the wireless interface is <strong>wlp3s0</strong>.</p>
+
+<p>Run the following command to setup configure the wireless connection:</p>
+
+<pre><code># wifi-menu &lt;interface&gt;
+</code></pre>
+
+<h4 id="wired">Wired</h4>
+<p>It should be enough to start the DHCP client as:</p>
+
+<pre><code># systemctl restart dhcpd.service
+</code></pre>
+
+<h3 id="storage-devices-partitions--lvm">Storage devices (Partitions &amp; LVM)</h3>
+
+<p>List all devices (hdd) available and make sure you choose the right one:</p>
+
+<pre><code># lsblk
+NAME                 MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+sda                    8:0    0 119.2G  0
+</code></pre>
+
+<p>Create one partition for <strong>boot</strong> systems and another for data/swap/root system.</p>
+
+<pre><code># parted /dev/sdx
+(parted) mklabel gpt
+</code></pre>
+<p>Set up <strong>boot</strong> partition<br />
+<code>
+(parted) mkpart ESP fat32 1MiB 513MiB
+(parted) set 1 boot on
+</code><br />
+Set up data partition<br />
+<code>
+(parted) mkpart primary ext4 513MiB 100%
+</code></p>
+
+<p>The next step is to format the partitions:</p>
+
+<p><strong>boot</strong> partition:<br />
+<code>
+# mkfs.fat -F32 /dev/sdxY
+</code><br />
+<strong>data</strong> partition:<br />
+<code>
+# mkfs.ext4 /dev/sdxY
+</code></p>
+
+<p>Now it is turn to setup the LVM.</p>
+
+<h4 id="lvm-set-up">LVM Set up</h4>
+
+<p>Three logical volumes will be created for:<br />
+* root<br />
+* user’s data<br />
+* swap [optional]</p>
+
+<pre><code># pvcreate /dev/sdax
+# vgcreate VolGroup00 /dev/sdax
+# lvcreate -L 25G VolGroup00 -n lroot
+# lvcreate -L 8G VolGroup00 -n lswap
+# lvcreate -l +100%FREE VolGroup00 -n lhome
+#
+# modprobe dm_mod
+# vgscan
+# vgchange -ay
+</code></pre>
+
+<p>Format the logical volumes</p>
+
+<pre><code># mkfs.ext4 /dev/mapper/VolGroup00-lroot
+# mkfs.ext4 /dev/mapper/VolGroup00-lhome
+# mkswap /dev/mapper/VolGroup00-lswap
+# swapon /dev/mapper/VolGroup00-lswap
+</code></pre>
+
+<h3 id="mount-and-create-basic-installation">Mount and create basic installation</h3>
+
+<pre><code># mount /dev/mapper/VolGroup00-lroot /mnt
+# mkdir /mnt/boot
+# mkdir /mnt/home
+# mount /dev/sdax /mnt/boot
+# mount /dev/mapper/VolGroup00-lhome /mnt/home
+</code></pre>
+
+<ol>
+  <li>
+    <p>Install base system:</p>
+
+    <pre><code># pacstrap /mnt base base-devel
+</code></pre>
+  </li>
+  <li>
+    <p>Generate fstab:</p>
+
+    <pre><code># genfstab -U /mnt &gt; /mnt/etc/fstab
+</code></pre>
+  </li>
+  <li>
+    <p>Configure the base system:</p>
+
+    <pre><code># arch-chroot /mnt /bin/bash
+</code></pre>
+  </li>
+  <li>
+    <p>Set Locale: Uncomment <code>en_US.UTF-8</code> and <code>es_ES.UTF-8</code> from <code>/etc/locale.gen</code> and run:</p>
+
+    <pre><code># locale-gen
+# echo LANG=en_US.UTF-8 &gt; /etc/locale.conf
+# echo KEYMAP=es &gt; /etc/vconsole.conf
+</code></pre>
+  </li>
+  <li>
+    <p>Set Time:</p>
+
+    <pre><code># ln -sf /usr/share/zoneinfo/Europe/Madrid /etc/localtime
+# hwclock --systohc --utc
+</code></pre>
+  </li>
+  <li>
+    <p>Configure Graphics Card: Intel Graphics HD 5000</p>
+
+    <pre><code># pacman -S xorg-xinit xorg-server xf86-video-intel xf86-video-fbdev xf86-video-vesa libva-intel-driver libva libvdpau-va-gl [gnome-session gdm gnome-control-panel gnome-terminal nautilus]
+</code></pre>
+    <p>Create a file: <code>/etc/modprobe.d/i915.conf</code> with the following line:</p>
+
+    <pre><code>options i915 modeset=1
+</code></pre>
+
+    <p>Create a file: <code>/etc/X11/xorg.conf.d/20-intel.conf</code> with the following content:</p>
+
+    <pre><code>Section "Device"
+  Identifier "Card0"
+  Driver "intel"
+  VendorName "Intel Corporation"
+  BusID "PCI:0:2:0"
+EndSection
+</code></pre>
+  </li>
+  <li>
+    <p>Initramfs:</p>
+
+    <p>Edit the following lines in <code>/etc/mkinitcpio.conf</code></p>
+
+    <pre><code>MODULES="intel_agp i915"
+FILES="/etc/modprobe.d/i915.conf"
+HOOKS="base udev autodetect modconf block lvm2 filesystems keyboard fsck"
+</code></pre>
+
+    <p>Then regenerate the Initramfs image:</p>
+
+    <pre><code># mkinitcpio -p linux
+</code></pre>
+  </li>
+  <li>
+    <p>Finally create a boot loader (EFI/GPT):</p>
+
+    <pre><code># bootctl install
+</code></pre>
+  </li>
+  <li>
+    <p>Create a boot entry in <code>/boot/loader/entries/arch.conf</code>:</p>
+
+    <pre><code>title 	Arch Linux
+linux 	/vmlinuz-linux
+initrd	/initramfs-linux.img
+options 	root=/dev/mapper/VolGroup00-lroot rw
+</code></pre>
+  </li>
+  <li>
+    <p>Choose the default entry on loader</p>
+
+    <pre><code># vi /boot/loader/loader.conf
+</code></pre>
+    <p>Append these lines:</p>
+
+    <pre><code>timeout 3
+default arch
+</code></pre>
+  </li>
+  <li>
+    <p>Set the hostname:</p>
+
+    <pre><code>echo slimarch &gt; /etc/hostname
+</code></pre>
+  </li>
+</ol>
+
+<p>Finally reboot</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://wiki.archlinux.org/index.php/Installation_guide">Archlinux Installation guide</a></li>
+  <li><a href="https://wiki.archlinux.org/index.php/Beginners\'_guide">Archlinux Beginner’s guide</a></li>
+  <li><a href="https://wiki.archlinux.org/index.php/Intel_graphics">Archlinux Intel graphics</a></li>
+</ul>
+</p>
+
+  		</div>
+		</div>
+	</section>
+	<br/>
+	<br/>
+	<section>
+  	<div class="row">
+    	<!--<div class=" col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8"> -->
+		<div class=" col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+			<div id="disqus_thread"></div>
+    </div>
+    </div>
+  </section>
+
+        <br/>
+        <br/>
+
+        
+
+<footer>
+
+    <div class="row">
+      <div class=" col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+        <hr/>
+        <p align="center">
+          <small>© 2014 JemZ.</small><br />
+          <small>Made with <a href="http://jekyllrb.com/">Jekyll</a> &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a> &mdash; Layout design based on <a href="http://pixelcog.com">Pixelcog Inc.</a></small>
+        </p>
+      </div>
+    </div>
+
+</footer>
+
+    
+ <!--   </div> -->
+
+
+
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'jemz'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  </body>
+
+</html>

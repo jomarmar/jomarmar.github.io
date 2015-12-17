@@ -1,8 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="c16" href="./JFStreamParser.html" title="org.fringe.jf.json.internal.parser.JFStreamParser" alt="" coords="16,11,333,133"/>
-<area shape="rect" id="node1" href="./JFStreamParser.html" title="&lt;TABLE&gt;" alt="" coords="5,6,344,138"/>
-<area shape="rect" id="c17" href="./JFParser.html" title="org.fringe.jf.json.internal.parser.JFParser" alt="" coords="378,27,571,117"/>
-<area shape="rect" id="node2" href="./JFParser.html" title="&lt;TABLE&gt;" alt="" coords="368,22,581,122"/>
-<area shape="rect" id="c18" href="./JFParamParser.html" title="org.fringe.jf.json.internal.parser.JFParamParser" alt="" coords="615,27,1193,117"/>
-<area shape="rect" id="node3" href="./JFParamParser.html" title="&lt;TABLE&gt;" alt="" coords="605,22,1203,122"/>
-</map>

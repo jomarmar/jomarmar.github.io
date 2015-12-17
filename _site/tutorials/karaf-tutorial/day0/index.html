@@ -1,0 +1,241 @@
+<!-- <div class="post"> -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>Karaf Tutorial Day 0</title>
+  <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+">
+
+
+  <link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Cabin" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  <link rel="shortcut icon" href="/favicon.ico?v=2" type="image/x-icon" sizes="16x16 32x32 64x64">
+  <link rel="icon" href="/favicon.ico?v=2" type="image/x-icon" sizes="16x16 32x32 64x64">
+
+
+  <link rel="canonical" href="http://jemz.ovh/tutorials/karaf-tutorial/day0/">
+  <link rel="alternate" type="application/atom+xml" title="JemZ Blog" href="http://jemz.ovh/feed.xml" />
+
+  <script src="/js/modernizr.js"></script>
+
+</head>
+
+
+<header>
+
+    <div class="row">
+      <div class=" col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+      <!-- <div class=" col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">-->
+        <br/>
+        <div class="pull-right">
+          <table class="table table-condensed table-bordered jemz-border">
+            <tr>
+              
+                
+		              
+	 	                 <td style="font-family: 'Cabin'; text-align: center; font-size: 90%;"><b><a class="page-link" href="/about/">About</a></b></td>
+                  
+                
+              
+                
+              
+                
+              
+                
+		              
+	 	                 <td style="font-family: 'Cabin'; text-align: center; font-size: 90%;"><b><a class="page-link" href="/contact/">Contact</a></b></td>
+                  
+                
+              
+                
+              
+                
+		              
+                
+              
+                
+		              
+                
+              
+                
+		              
+                
+              
+                
+		              
+                
+              
+                
+		              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+		              
+	 	                 <td style="font-family: 'Cabin'; text-align: center; font-size: 90%;"><b><a class="page-link" href="/projects/">Projects</a></b></td>
+                  
+                
+              
+                
+              
+                
+		              
+	 	                 <td style="font-family: 'Cabin'; text-align: center; font-size: 90%;"><b><a class="page-link" href="/tutorials/">Tutorials</a></b></td>
+                  
+                
+              
+              <td style="font-family: 'Cabin'; text-align: center; font-size: 90%;"><b><a class="page-link" href="/blog/">Blog</a></b></td>
+            </tr>
+          </table>
+        </div>
+        <!-- <h1>JemZ. Blog</h1>-->
+        <a href="/"><img src="/img/jemz-logo.png" width="150"/></a>
+        <hr/>
+      </div>
+    </div>
+  
+</header>
+
+
+
+<header>
+	<div class="row">
+		<div class=" col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+		    <h1>Karaf Tutorial Day 0</h1>
+		    <hr/>
+		</div>
+  </div>
+</header>
+
+<section>
+	<div class="row">
+  	<div class=" col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+    
+	    <p align="justified"><p>The aim of these tutorials is to provide a sample of a fully <a href="https://karaf.apache.org">Apache Karaf Application</a>, from the very early stages of design to the final production setup.<br />
+In <strong>Day 0</strong> tutorial we’ll see: what is Karaf, installation and basic commands and deploy a  HelloWorld application.</p>
+
+<h3 class="no_toc" id="table-of-contents">Table of Contents</h3>
+
+<ul id="markdown-toc">
+  <li><a href="#what-is-karaf" id="markdown-toc-what-is-karaf">What is Karaf?</a></li>
+  <li><a href="#installation-and-startup" id="markdown-toc-installation-and-startup">Installation and Startup</a>    <ul>
+      <li><a href="#apache-karaf-installation" id="markdown-toc-apache-karaf-installation">Apache Karaf Installation</a></li>
+      <li><a href="#running-karaf-basic-commands" id="markdown-toc-running-karaf-basic-commands">Running Karaf: Basic commands</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="what-is-karaf">What is Karaf?</h2>
+
+<p><a href="https://karaf.apache.org">Apache Karaf Application</a> is light OSGi container based on <a href="http://felix.apache.org/">Felix</a>  or <a href="http://eclipse.org/equinox/">Equinox</a>. The difference between Karaf and other OSGi containers is the management features it brings with it.</p>
+
+<p>Some of the outstanding features that I will use in this Tutorial series are:</p>
+
+<ul>
+  <li><em>Hot deployment and Dynamic configuration</em></li>
+  <li><em>Provisioning</em></li>
+  <li><em>Extensible BASH-like console</em></li>
+  <li><em>Security Framework based on JAAS</em></li>
+  <li><em>Web applications support</em></li>
+</ul>
+
+<p>After three or four years using Karaf one of the most astonishing features I’ve found is how easy a Karaf application can be integrated with other  external applications. With just a little bit of configuration and coding you can provide your application with access through: SSH commands, Web interface (WebServices, RESTful APIs).</p>
+
+<h2 id="installation-and-startup">Installation and Startup</h2>
+
+<p>This tutorial will use Karaf 3.0.2 version. There are other Karaf branches such as Karaf 4.0.x (preview release, not for production use yet), Karaf 2.4.x (uses latest libraries for Aries and Pax, plus many improvements over 2.3.x) and Karaf 2.3.x. The reason why I use version 3.0.x in this tutorial is just that it is the current version I use in my latest projects: It is stable and it has many improvements over 2.3.x (see <a href="http://www.liquid-reality.de/display/liquid/2013/12/28/10+reasons+to+switch+to+Apache+Karaf+3">here</a> for more information)</p>
+
+<p>You can download the standard Karaf distribution from <a href="http://karaf.apache.org/index/community/download.html">here</a>.</p>
+
+<h3 id="apache-karaf-installation">Apache Karaf Installation</h3>
+
+<p>In order to install Apache Karaf it is just enough to decompress the <em>.tar.gz or *.zip file to any folder in your machine. From now on this folder will be known as *KARAF_HOME</em>.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> In order to run Karaf you need Java SDK installed in your machine. The minimum version recommended for Karaf 3.0.2 is JDK 6 but it is adviceable to use JDK 7 or higher.</p>
+
+  <p>Also it is recommended to properly set the <em>JAVA_HOME</em> environment variable pointing to your JDK installation.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Note:</strong> Karaf can be run on Windows / Linux OS</p>
+</blockquote>
+
+<h3 id="running-karaf-basic-commands">Running Karaf: Basic commands</h3>
+
+<p>In order to start Karaf for the first time it is enough to execute the <em>karaf.(bat)</em> command. Once executed you should see the welcome screen:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">[</span>jmartinez@jfedora apache-karaf-3.0.2<span class="o">]</span><span class="nv">$ </span>./bin/karaf
+        __ __                  ____
+       / //_/____ __________ _/ __/
+      / ,&lt;  / __ <span class="sb">`</span>/ ___/ __ <span class="sb">`</span>/ /_
+     / /| |/ /_/ / /  / /_/ / __/
+    /_/ |_|<span class="se">\_</span>_,_/_/   <span class="se">\_</span>_,_/_/
+
+  Apache Karaf <span class="o">(</span>3.0.2<span class="o">)</span>
+
+Hit <span class="s1">&#39;&lt;tab&gt;&#39;</span> <span class="k">for </span>a list of available commands
+and <span class="s1">&#39;[cmd] --help&#39;</span> <span class="k">for </span><span class="nb">help </span>on a specific command.
+Hit <span class="s1">&#39;&lt;ctrl-d&gt;&#39;</span> or <span class="nb">type</span> <span class="s1">&#39;system:shutdown&#39;</span> or <span class="s1">&#39;logout&#39;</span> to shutdown Karaf.
+
+karaf@root<span class="o">()</span>&gt;</code></pre></figure>
+
+<p>This is the Karaf console. From here you can perform a lot of different operations such as: installing/starting/stopping bundles and features, configure services properties, manage JAAS implementation etc…</p>
+
+<p>Commands are grouped by functionality, thus operations related with bundle management are grouped under <em>bundle</em> group, operations related with features handling under <em>feature</em> and so on…</p>
+
+<p>To get help on a specific command is just enough to write:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">&lt;cmd&gt; --help</code></pre></figure>
+
+<p>The next list shows the commands I use more often:</p>
+
+<ul>
+  <li><strong>info</strong> <em>(shell:info)</em>: Prints system information.</li>
+  <li><strong>list</strong> <em>(bundle:list)</em>: Lists all installed bundles.</li>
+  <li><strong>feature:list</strong>: Lists all existing features available from the defined repositories. Option <em>-i</em> to see only installed features.</li>
+  <li><strong>log:tail</strong>: Continuously display log entries. Use ctrl-c to quit this command.</li>
+  <li><strong>log:set</strong>: To change the log level.</li>
+  <li><strong>bundle:diag</strong>: Shows diagnostic information why a bundle is not Active.</li>
+</ul>
+
+<p>Besides there are a lot more commands we will be using as we developed our applications related with the installation/un-installation of bundles and features.</p>
+
+<blockquote>
+  <p>For more information visit <a href="http://karaf.apache.org/manual/latest/index.html">http://karaf.apache.org</a></p>
+</blockquote>
+</p>
+    
+    </div>
+  </div>
+</section>
+
+
+
+<footer>
+
+    <div class="row">
+      <div class=" col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+        <hr/>
+        <p align="center">
+          <small>© 2014 JemZ.</small><br />
+          <small>Made with <a href="http://jekyllrb.com/">Jekyll</a> &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a> &mdash; Layout design based on <a href="http://pixelcog.com">Pixelcog Inc.</a></small>
+        </p>
+      </div>
+    </div>
+
+</footer>
+
